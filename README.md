@@ -38,33 +38,13 @@ A `data/` folder will be created automatically — this is where your workspaces
 
 ## Project Structure
 
-MokoSeq/
-│
-├── app.py
-├── requirements.txt
-├── README.md
-├── LICENSE
-├── .gitignore
-├── setup.py
-├── pyproject.toml
-│
-├── mokoseq/
-│   ├── analysis.py
-│   ├── workspace.py
-│   ├── categories.py
-│   ├── filetree.py
-│   ├── ui.py
-│   └── utils.py
-│
-├── data/ (auto‑generated)
-│
-├── docs/
-└── tests/
+MokoSeq is organized into a few main parts:
 
-
-## Future Plans
-
----
+- `app.py` — the Streamlit app  
+- `mokoseq/` — all core logic 
+- `data/` — auto‑generated workspaces & projects  
+- `docs/` — documentation  
+- `tests/` — basic test files  
 
 ## Why I Built This
 
