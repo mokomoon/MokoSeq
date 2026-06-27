@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.streamlit/
+data/
+.DS_Store
+Thumbs.db

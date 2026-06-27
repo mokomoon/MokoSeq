@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mokoseq"
+version = "0.1.0"
+description = "Bioinformatics workspace platform"
+authors = [{name="mokomoon"}]
+requires-python = ">=3.11"
