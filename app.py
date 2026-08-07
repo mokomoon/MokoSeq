@@ -25,6 +25,26 @@ from mokoseq.categories import load_categories, save_categories
 from mokoseq.filetree import render_sidebar
 from mokoseq.utils import read_file
 from mokoseq.analysis import preview_sequence
+from mokoseq.analysis import analyze_sequence
+from mokoseq.parsers import parse_fasta
+from mokoseq.utils import calculate_gc_content
+from mokoseq.analysis import (
+    analyze_sequence,
+    gc_content,
+    find_orfs,
+    find_advanced_orfs,
+    detect_rna_editing,
+    find_uorfs_and_microorfs,
+    classify_ncrna,
+    codon_usage,
+    codon_usage_summary,
+    find_orfs_6frame,
+    find_motifs,
+    translate_sequence,
+    hydrophobicity_profile
+)
+
+
 
 
 
@@ -236,4 +256,36 @@ for cat, flist in categories.items():
 
                 st.code(preview_sequence(seq_data), language="text")
 
-                st.info("Analysis functions will go here.")
+             
+
+
+# 11. ANALYSIS PORTION
+# =======================================================================
+
+seq = parse_fasta(file_path)
+
+gc = gc_content(seq)
+orfs = find_orfs(seq)
+advanced = find_advanced_orfs(seq)
+editing = detect_rna_editing(seq)
+uorfs = find_uorfs_and_microorfs(seq)
+ncrna = classify_ncrna(seq)
+codons = codon_usage(seq)
+most_used, most_used_count, bias = codon_usage_summary(codons)
+sixframe = find_orfs_6frame(seq)
+motifs = find_motifs(seq)
+
+st.subheader("Sequence Analysis")
+
+st.write("GC Content:", f"{gc:.2f}%")
+st.write("ORF Count:", len(orfs))
+st.write("Advanced ORFs:", len(advanced))
+st.write("RNA Editing:", editing)
+st.write("uORFs:", len([o for o in uorfs if o[0] == "uORF"]))
+st.write("microORFs:", len([o for o in uorfs if o[0] == "microORF"]))
+st.write("ncRNA Type:", ncrna)
+st.write("Most Used Codon:", most_used)
+st.write("Codon Bias:", bias)
+st.write("6-frame ORFs:", len(sixframe))
+st.write("Motif Hits:", {k: len(v) for k, v in motifs.items()})
+
