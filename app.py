@@ -27,7 +27,7 @@ from mokoseq.utils import read_file
 from mokoseq.analysis import preview_sequence
 from mokoseq.analysis import analyze_sequence
 from mokoseq.parsers import parse_fasta
-from mokoseq.utils import gc_content
+from mokoseq.analysis import gc_content
 from mokoseq.analysis import (
     analyze_sequence,
     gc_content,
